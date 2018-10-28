@@ -1,0 +1,21 @@
+{
+  "name": "async-nbind-node-addon",
+  "version": "0.0.1",
+  "description": "Demo a node asyn addon using nbind",
+  "main": "test.js",
+  "scripts": {
+    "install": "autogypi && node-gyp --python /c/Python27/python rebuild",
+    "autogypi": "autogypi",
+    "node-gyp": "node-gyp",
+    "build-nbind": "node-gyp --python /c/Python27/python rebuild",
+    "test": "node test.js"
+  },
+  "gypfile": true,
+  "dependencies": {
+    "autogypi": "^0.2.2",
+    "nbind": "^0.3.15",
+    "node-gyp": "^3.8.0"
+  },
+  "author": "Hitesh Lala",
+  "license": "ISC"
+}

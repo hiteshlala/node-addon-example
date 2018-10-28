@@ -1,0 +1,8 @@
+nbindaddon/build
+nbindaddon/node_modules
+nbindaddon/auto-top.gypi
+nbindaddon/auto.gypi
+
+regularnodeaddon/build
+regularnodeaddon/node_modules
+
