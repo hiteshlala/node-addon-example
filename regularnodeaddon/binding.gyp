@@ -5,14 +5,6 @@
       'sources': [
         './src/asyncstuffneat.cpp'
       ],
-      #  None of these seem to work, still wont compile with try catch
-      # 'cflags!': [ '-fno-exceptions' ],
-      # 'cflags_cc!': [ '-fno-exceptions' ],
-      # 'cflags': [ '-fexceptions' ],
-      # 'cflags_cc': [ '-fexceptions' ],
-      # "defines": [
-      #   "_HAS_EXCEPTIONS=1"
-      # ],
       'include_dirs': [ 
       ],
       "dependencies": [
@@ -31,10 +23,11 @@
               }
             }
          }],
-        #  ['OS=="mac"', {
-        #    'cflags!': [ '-fno-exceptions' ],
-        #    'cflags_cc!': [ '-fno-exceptions' ]
-        #  }]
+         ['OS=="mac"', {
+           "xcode_settings": {
+              "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+            },
+         }]
       ]
     }
   ] 

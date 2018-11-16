@@ -87,13 +87,13 @@ void longRunFunctionDone( uv_work_t * order, int status ) {
 void longRunFunctionRunner(  uv_work_t * order ) {
   // std::cout << "longRunFunctionRunner()\n" << std::endl; 
   Worker * work = static_cast< Worker * >( order -> data );
-  // try {
+  try {
     work -> genericresult = testDelay( work -> msdelay );
-  // }
-  // catch ( ... ) {
-  //   work -> errormsg = "Error executing delay";
-  //   work -> error = true;
-  // }
+  }
+  catch ( ... ) {
+    work -> errormsg = "Error executing delay";
+    work -> error = true;
+  }
 }
 
 
