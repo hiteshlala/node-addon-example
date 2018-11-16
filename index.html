@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title> Node Add On Tests </title>
+    <style>
+      /* body {
+        width: 100%;
+      } */
+      .main {
+        width: 80%;
+        margin: 20px auto;
+        background-color: ghostwhite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <p> Call an async function that has a 50ms delay </p>
+      
+      <p><input type="button" value=" Time Nbind Add On" onclick="request('nbind')"/></p>
+
+      <p><input type="button" value=" Time Regular Add On" onclick="request('regular')"/></p>
+
+      <p><input type="button" value=" Time Nan Add On" onclick="request('nan')" disabled="true"/></p>
+
+      <p> Result: </p>
+
+      <div id="results"></div>
+
+    </div>
+    <script>
+      const result = document.getElementById( 'results' );
+      function postRequest( url, data ) {
+        let send = JSON.stringify( data );
+        return new Promise(( resolve, reject ) => {
+          let req = new XMLHttpRequest();
+          req.responseType = 'json';
+          req.open( 'POST', url, true );
+          req.setRequestHeader( 'Content-Type', 'application/json;charset=UTF-8' );
+          req.setRequestHeader( 'Accept', 'application/json' );
+          req.onload = r => {
+            if( r.target.status >= 400 ) {
+              reject( new Error( `${r.target.status} - ${r.target.response}` ) );
+            }
+            resolve( req.response );
+          }
+          req.onerror = e => {
+            reject( e );
+          }
+          req.send( send );
+        });
+      }
+      function request( type, number ) {
+        console.log( 'request called', type, number )
+        number = number || 10;
+        const p = document.createElement( 'p' );
+        postRequest( `/${type}`, { test: 'hello', type, number } )
+        .then( r => {
+          console.log( r );
+          p.innerText = typeof r == 'string' ? r : JSON.stringify( r );
+          result.appendChild( p );
+        })
+        .catch( e => {
+          p.innerText = e.message;
+          result.appendChild( p );
+        });
+      }
+
+    </script>
+  </body>
+</html>

@@ -4,10 +4,12 @@
   "description": "Demo a node asyn addon using nbind",
   "main": "test.js",
   "scripts": {
-    "install": "autogypi && node-gyp --python /c/Python27/python rebuild",
+    "install_win": "autogypi && node-gyp --python /c/Python27/python rebuild",
+    "install_osx": "autogypi && node-gyp rebuild",
     "autogypi": "autogypi",
     "node-gyp": "node-gyp",
-    "build-nbind": "node-gyp --python /c/Python27/python rebuild",
+    "build-nbind_win": "node-gyp --python /c/Python27/python rebuild",
+    "build-nbind_osx": "node-gyp rebuild",
     "test": "node test.js"
   },
   "gypfile": true,

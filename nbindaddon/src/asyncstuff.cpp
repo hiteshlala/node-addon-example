@@ -1,9 +1,10 @@
-#include <node.h>
 #include <iostream>
 #include <string>
 #include <cstddef>
+#include <node.h>
 #include <uv.h> 
-#include <windows.h>
+#include <chrono>
+#include <thread>
 
 #include "nbind/api.h"
 
@@ -33,8 +34,7 @@ struct Worker {
 };
 
 std::string testDelay( int time ) {
-  // std::cout << "Delay Start " << time << "!\n";
-  Sleep( time );
+  std::this_thread::sleep_until( std::chrono::system_clock::now() + std::chrono::milliseconds( time ));
   return "Delay Complete";
 } 
 
@@ -63,9 +63,9 @@ void longRunFunctionRunner(  uv_work_t * order ) {
   try {
     work -> genericresult = testDelay( work -> msdelay );
   }
-  catch ( std::exception & error ) {
-    work -> errormsg = error.what();
+  catch( ... ) {
     work -> error = true;
+    work -> errormsg = "Error executing delay";
   }
 }
 

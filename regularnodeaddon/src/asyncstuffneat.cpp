@@ -1,7 +1,8 @@
-#include <node.h>
 #include <iostream>
 #include <string>
-
+#include <chrono>
+#include <thread>
+#include <node.h>
 #include <uv.h> 
 
 
@@ -55,8 +56,7 @@ struct Worker {
 };
 
 std::string testDelay( int time ) {
-  // std::cout << "Delay Start " << time << "!\n";
-  Sleep( time );
+  std::this_thread::sleep_until( std::chrono::system_clock::now() + std::chrono::milliseconds( time ));
   return "Delay Complete";
 }
 
@@ -87,13 +87,13 @@ void longRunFunctionDone( uv_work_t * order, int status ) {
 void longRunFunctionRunner(  uv_work_t * order ) {
   // std::cout << "longRunFunctionRunner()\n" << std::endl; 
   Worker * work = static_cast< Worker * >( order -> data );
-  try {
+  // try {
     work -> genericresult = testDelay( work -> msdelay );
-  }
-  catch ( std::exception & error ) {
-    work -> errormsg = error.what();
-    work -> error = true;
-  }
+  // }
+  // catch ( ... ) {
+  //   work -> errormsg = "Error executing delay";
+  //   work -> error = true;
+  // }
 }
 
 

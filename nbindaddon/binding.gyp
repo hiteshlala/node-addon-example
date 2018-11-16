@@ -5,7 +5,7 @@
 				"auto.gypi"
 			],
 			"sources": [
-				"src\\asyncstuff.cpp"
+				"src//asyncstuff.cpp"
 			]
 		}
 	],

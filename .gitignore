@@ -6,3 +6,4 @@ nbindaddon/auto.gypi
 regularnodeaddon/build
 regularnodeaddon/node_modules
 
+node_modules
