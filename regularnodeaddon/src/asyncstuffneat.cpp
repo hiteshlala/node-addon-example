@@ -39,6 +39,7 @@ void sayHello( const FunctionCallbackInfo< Value >& args ) {
   String::Utf8Value namein( args[0] );
   std::string name( *namein );
   std::cout << "Sanity Check!! Hello, " << name << "!\n\n";
+  args.GetReturnValue().Set(String::NewFromUtf8( isolate, "Hello from synchronous function" ) );
 }
 
 struct Worker {

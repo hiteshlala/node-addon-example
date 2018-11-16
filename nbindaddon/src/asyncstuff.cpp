@@ -12,8 +12,9 @@ using v8::Isolate;
 using v8::HandleScope;
 
 
-void sayHello(std::string name) {
+std::string sayHello(std::string name) {
   std::cout << "Sanity Check!! Hello, " << name << "!\n\n";
+  return "Hello from synchronous function";
 }
 
 

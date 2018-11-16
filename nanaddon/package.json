@@ -1,0 +1,17 @@
+{
+  "name": "async-nan-node-addon",
+  "version": "0.0.1",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "build": "node-gyp --python /c/Python27/python rebuild",
+    "test": "node test.js"
+  },
+  "author": "Hitesh Lala <hiteshlala@gmail.com>",
+  "license": "ISC",
+  "gypfile": true,
+  "dependencies": {
+    "nan": "^2.11.1",
+    "node-gyp": "^3.8.0"
+  }
+}
