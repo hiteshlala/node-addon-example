@@ -2,14 +2,24 @@
   <head>
     <title> Node Add On Tests </title>
     <style>
-      /* body {
-        width: 100%;
-      } */
       .main {
         width: 80%;
         margin: 20px auto;
-        background-color: ghostwhite;
       }
+      .wait {
+        border: 2px solid red;
+        border-radius: 50%;
+        border-top: 2px solid #3498db;
+        width: 15px;
+        height: 15px;
+        animation: spin 2s linear infinite;
+        visibility: hidden;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
     </style>
   </head>
   <body>
@@ -24,11 +34,14 @@
 
       <p> Result: </p>
 
+      <div class="wait" id="wait"></div>
+
       <div id="results"></div>
 
     </div>
     <script>
       const result = document.getElementById( 'results' );
+      const spinner = document.getElementById( 'wait' );
       function postRequest( url, data ) {
         let send = JSON.stringify( data );
         return new Promise(( resolve, reject ) => {
@@ -50,18 +63,19 @@
         });
       }
       function request( type, number ) {
-        console.log( 'request called', type, number )
         number = number || 10;
+        wait.style.visibility = 'visible';
         const p = document.createElement( 'p' );
         postRequest( `/${type}`, { test: 'hello', type, number } )
         .then( r => {
-          console.log( r );
           p.innerText = typeof r == 'string' ? r : JSON.stringify( r );
           result.appendChild( p );
+          wait.style.visibility = 'hidden';
         })
         .catch( e => {
           p.innerText = e.message;
           result.appendChild( p );
+          wait.style.visibility = 'hidden';
         });
       }
 
