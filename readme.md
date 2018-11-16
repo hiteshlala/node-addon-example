@@ -46,6 +46,8 @@ In Express if I remove the Promise call and use a callback the delay is gone.
 
 I found the same behaviour using Node 10.13 and Node 8.12.
 
+We solved the delay by wrapping the callback function bodies in setTimeout().
+
 
 
 

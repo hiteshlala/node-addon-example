@@ -7,26 +7,35 @@ const addOnNbind = require( './nbindaddon/build/Release/nbind.node' );
 const addOnRegular = require( './regularnodeaddon/build/Release/asyncfuncs.node' );
 const addOnNan = require( './nanaddon/build/Release/asyncfuncs.node' );
 
-function asyncfunc( lib, time ) {
+function wrapNative( fn ) {
+  return ( ...args ) => {
+    return new Promise(( resolve, reject ) => {
+      fn( ...args, ( err, res ) => {
+        setTimeout(() => {
+          if( err ) {
+            reject( err );
+          }
+          else {
+          resolve( res );
+          }
+        }, 0 );
+      });
+    });
+  };
+}
+
+
+async function asyncfunc( lib, time ) {
   let f = addOnRegular;
-  
   if ( lib == 'nbind') {
     f = addOnNbind;
   }
   else if ( lib === 'nan' ) {
     f= addOnNan;
   }
-
-  return new Promise(( resolve, reject ) => {
-    f.longRunFunction( time, ( err, res ) => {
-      if( err ) {
-        reject( err );
-      }
-      else {
-        resolve( res )
-      }
-    });
-  });
+  f = wrapNative( f.longRunFunction );
+  const res = await f( time );
+  return res;
 }
 
 function syncfunc( lib, time ) {

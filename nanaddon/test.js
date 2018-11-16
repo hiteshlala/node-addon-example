@@ -1,6 +1,6 @@
 let funcs = require( './build/Release/asyncfuncs' ); 
 
-// console.log( funcs );
+console.log( funcs );
 
 console.log( 'Calling longRunFunction with 5s delay.\n' );
 
