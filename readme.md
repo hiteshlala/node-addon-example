@@ -15,11 +15,12 @@ Have to install and build each of the projects in the subdirectories:
   regularnodeaddon
 
 Then have to install and build in the root directory.
-  node serve.js will start a server listening on 7003 that has a web inteface.
+  node serveKoa.js will start a server listening on 7003 that has a web inteface.
+  node serveExpress.js will start a server listening on 7004 that has a web inteface.
 
 
 
-## Node-gyp
+## Regular
 
 Uses the node-gyp directly along with accessing V8:: classes and methods.
 
@@ -35,5 +36,16 @@ Uses nan layer.
 
 ## Problem
 
-When
+There seems to be a delay in the handoff between the c++ to the awaiter in js.
+
+This issue exists in Regular and Nbind version.  Nan version does not display this behaviour.
+
+The issue exists both in Koa and Express servers.
+
+In Express if I remove the Promise call and use a callback the delay is gone.
+
+
+
+
+
 
