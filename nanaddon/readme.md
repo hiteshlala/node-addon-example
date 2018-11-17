@@ -1,7 +1,17 @@
 
-To build this nan addon:
+# To build this nan addon
 
-  windows:
-    npm install --python=python2.7
-    This installs and builds everything.
-    Specify Python 2.7 if you have version 3 as well.
+## windows:
+
+  `npm install --python=python2.7`
+
+This installs and builds everything.
+
+Specify Python 2.7 if you have Python 3 on machine.This   
+  
+
+
+## mac:
+
+  `npm install`
+

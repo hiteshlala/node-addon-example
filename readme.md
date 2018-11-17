@@ -4,7 +4,7 @@ Some experiments accessing C++ code asynchronously.
 
 Note: I primarily code using Javascript and  not C++ so I am sure there might be bugs or poor implementation of my C++ code.
 
-Both modules uses Python 2.7 underneath and I had to include a path to that version of Python in the build scripts.
+Thub build uses Python 2.7 underneath and I had to include a path to that version of Python in the build scripts.
 
 There are two servers in this demo one of which ( Koa ) demonstrates a delay in response from the node addons.
 
@@ -12,13 +12,13 @@ There are two servers in this demo one of which ( Koa ) demonstrates a delay in 
 ## Building
 
 Have to install and build each of the projects in the subdirectories:
-  nanaddon
-  nbindaddon
-  regularnodeaddon
+  * nanaddon
+  * nbindaddon
+  * regularnodeaddon
 
 Then have to install and build in the root directory.
-  node serveKoa.js will start a server listening on 7003 that has a web inteface.
-  node serveExpress.js will start a server listening on 7004 that has a web inteface.
+  * node serveKoa.js will start a server listening on 7003 that has a web inteface.
+  * node serveExpress.js will start a server listening on 7004 that has a web inteface.
 
 
 ## Problem

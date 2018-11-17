@@ -5,6 +5,7 @@
   "main": "test.js",
   "scripts": {
     "build": "node-gyp --python /c/Python27/python rebuild",
+    "build-mac": "node-gyp rebuild",
     "test": "node test.js"
   },
   "author": "Hitesh Lala <hiteshlala@gmail.com>",

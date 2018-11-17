@@ -1,6 +1,15 @@
 
-To build this regular addon:
+# To build this regular addon
 
-  windows:
-    npm run build
-    This installs and builds everything.  No need for npm install first.
+## windows:
+
+  `npm run build`
+    
+
+
+## mac:
+
+  `npm run build-mac`
+
+
+    
