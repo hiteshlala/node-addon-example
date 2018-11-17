@@ -7,25 +7,9 @@ const addOnNbind = require( './nbindaddon/build/Release/nbind.node' );
 const addOnRegular = require( './regularnodeaddon/build/Release/asyncfuncs.node' );
 const addOnNan = require( './nanaddon/build/Release/asyncfuncs.node' );
 
-function wrapNative( fn ) {
-  return ( ...args ) => {
-    return new Promise(( resolve, reject ) => {
-      fn( ...args, ( err, res ) => {
-        setTimeout(() => {
-          if( err ) {
-            reject( err );
-          }
-          else {
-          resolve( res );
-          }
-        }, 0 );
-      });
-    });
-  };
-}
 
-
-async function asyncfunc( lib, time ) {
+// This way of calling the node add on delays the server
+function asyncfunc( lib, time ) {
   let f = addOnRegular;
   if ( lib == 'nbind') {
     f = addOnNbind;
@@ -33,10 +17,20 @@ async function asyncfunc( lib, time ) {
   else if ( lib === 'nan' ) {
     f= addOnNan;
   }
-  f = wrapNative( f.longRunFunction );
-  const res = await f( time );
-  return res;
+
+  return new Promise(( resolve, reject ) => {
+    f.longRunFunction( time, ( err, res ) => {
+      if( err ) {
+        reject( err );
+      }
+      else {
+        resolve( res );
+      }
+    });
+  });
 }
+
+
 
 function syncfunc( lib, time ) {
   let f = addOnRegular;

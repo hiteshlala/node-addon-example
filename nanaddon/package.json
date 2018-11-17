@@ -9,7 +9,6 @@
   },
   "author": "Hitesh Lala <hiteshlala@gmail.com>",
   "license": "ISC",
-  "gypfile": true,
   "dependencies": {
     "nan": "^2.11.1",
     "node-gyp": "^3.8.0"
