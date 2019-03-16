@@ -1,0 +1,17 @@
+{
+  "name": "async-napi-node-addon",
+  "version": "0.0.1",
+  "description": "Demo a node async addon using N-API",
+  "main": "test.js",
+  "scripts": {
+    "test": "node test.js",
+    "build": "node-gyp --python /c/Python27/python rebuild",
+    "build-mac": "node-gyp rebuild"
+  },
+  "gypfile": true,
+  "author": "Hitesh Lala",
+  "license": "ISC",
+  "dependencies": {
+    "node-addon-api": "^1.6.2"
+  }
+}
